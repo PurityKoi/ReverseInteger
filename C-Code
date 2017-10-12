@@ -1,0 +1,83 @@
+/******************************************************************************
+
+                            Online C Compiler.
+                Code, Compile, Run and Debug C program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include<stdio.h>
+#include<math.h>
+#include<ctype.h>
+#include<stdlib.h>
+#include<string.h>
+
+int reverse(int Integer);
+
+int main() {
+   int Integer=123;
+   int IntReverse=0;
+   
+   IntReverse=reverse(Integer);
+   printf("%d", IntReverse);
+   
+   if(IntReverse==0){
+   printf("Sorry Reversed Integer overflows \n" );
+   }
+   else{
+       printf("Reversed Number is:\t %d", IntReverse);
+       
+   }
+   
+   return 0;
+   
+}
+
+int reverse(int Integer) {
+    char *checker = " ";
+    int i; 
+    int length=0;
+    
+    //checking for null input
+    if(Integer==0){
+        printf(" \n Sorry your input is empty please try again");
+        exit(1);      
+    }
+    
+    //checking if input is valid integer
+    int checker2;
+    
+  checker2 = snprintf(checker, sizeof(checker), "%d", Integer);
+  
+  if (checker2>0)
+  {
+  
+   length = strlen(checker);   
+   for (i=0; i<length; i++);
+   {
+       if (!isdigit(checker[i]))
+       {
+         printf(" \n Sorry your input is not an integer please try again");
+        exit (1);   
+           }
+    }
+  }
+  else printf("\n Snprintf didn't work");
+    //Reversing the integer
+    int reverse=0;
+    
+while(Integer!=0){
+    
+    int digit=Integer%10;
+    reverse=(reverse*10)+digit;
+    Integer=Integer/10;
+}
+    if(pow(-2,31)<reverse<pow(2,31)){
+        return reverse;
+           }
+    else   return 0;
+}
+
+
+
+
